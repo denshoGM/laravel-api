@@ -1,0 +1,25 @@
+{
+  "name": "public",
+  "authors": [
+    "Julio Blanco <julioblancorangel@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "angular-local-storage": "^0.5.2",
+    "restangular": "^1.6.1"
+  }
+}

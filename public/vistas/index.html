@@ -1,0 +1,31 @@
+<div ng-controller="MainController">
+	<div class="row form-group">
+		<button class="btn btn-primary" ng-click="consultaInvoices()">Refrescar</button>
+        <button class="btn btn-primary" ng-click="mayorA()"> > 100$</button>
+        <button class="btn btn-primary" ng-click="masInfo()">Otra Manera</button>
+	</div>
+	<div class="row">
+	<table class="table table-bordered"> 
+		<thead> 
+		<tr> 
+			<th>#</th> 
+			<th>Fecha</th> 
+			<th>Número de Invoice</th> 
+			<th>Nombre de Cliente</th> 
+			<th>Fecha de Vencimiento</th>
+			<th>Monto</th>
+		</tr> 
+		</thead> 
+		<tbody> 
+		<tr ng-repeat="invoice in invoices">
+			<td>{{ $index + 1 }}</td>
+	    	<td>{{ invoice.date }}</td>
+	    	<td>{{ invoice.invoice_number }}</td>
+			<td>{{ invoice.customer_name }}</td>
+	    	<td>{{ invoice.due_date }}</td>
+	    	<td>{{invoice.currency_code}}{{ invoice.total }}</td> 	
+	    </tr>
+		</tbody> 
+	</table>
+	</div>
+</div>
