@@ -3,4 +3,7 @@
 Route::get('/', function () {
     return view('index');
 });
-Route::get('service/getZohoData', 'ServiceController@getZohoData');
+
+Route::get('/getApiData', 'ServiceController@getApiData');
+
+Route::get('/user-history', 'ServiceController@userHistory');
