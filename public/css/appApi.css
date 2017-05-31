@@ -299,7 +299,7 @@ body {
     padding-left: 10px;
 }
 .breadcrumb>.active {
-    color: #2bbd0f;
+    color: #525a67;
 }
 .breadcrumb a:hover {
     color: #b0b0b0;
@@ -324,7 +324,7 @@ body {
     transition: all 0.3s ease-in-out 0s;
 }
 .breadcrumb .active {
-    border-bottom: 3px solid #2bbd0f;
+    border-bottom: 3px solid #3399cc;
     padding-right: 10px;
     padding-left: 10px;
 }
@@ -619,7 +619,6 @@ body {
 h3{
     color: #9b9b9b;
     font-size: 24px;
-    margin-top: 4%;
 }
 
 input {
@@ -743,16 +742,11 @@ li:after {
     font-stretch: normal;
     color: #fff;
     background: #3399cc;
-    position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
     text-align: center;
-}
-
-.margin-datatable{
-    margin-top: -32px;
 }
 
 .msj-danger{
@@ -888,7 +882,7 @@ li:after {
 }
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
 .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
-    color: #00102d ;
+    color: #3399cc ;
     background: transparent;
     border-color: #39ff13 !important;
 }
@@ -1036,12 +1030,12 @@ select{
     -webkit-appearance: none;
     -moz-appearance: none;
     color: #fff !important;
-    height: 48px !important;
-    margin: 10px 0 10px 0;
+    height: 35px !important;
+    line-height: 1 !important;
     border-radius: 10px !important;
-    text-indent: 10px;
-    font-size: 18px !important;
-    background: url('../images/arrow.png') no-repeat 95% center #00102d  !important;
+    /* text-indent: 10px; */
+    font-size: 14px !important;
+    background: url(../images/arrow_gray.png) no-repeat 95% center #3399cc !important;
 }
 select:before {
     content: '';
@@ -1242,7 +1236,7 @@ textarea::-moz-placeholder{
 }
 
 thead th {
-    background:#00102d ;
+    background:#3399cc ;
     color: #fff;
 }
 .table-striped>tbody>tr:nth-of-type(odd){

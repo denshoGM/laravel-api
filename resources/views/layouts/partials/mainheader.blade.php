@@ -38,7 +38,15 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
-                                <a href="{{ url('/getApiData') }}">Load Data</a>
+                                <a href="{{ url('/getCombined') }}">Load Users+Tasks</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{{ url('/getUsersData') }}">Load Users</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{{ url('/getTodosData') }}">Load Tasks</a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
