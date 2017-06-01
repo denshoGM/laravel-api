@@ -15,7 +15,13 @@ class CreateHistoryTable extends Migration
     {
         Schema::create('data_history', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('lastName');
+            $table->string('email')->unique();
+            $table->string('title');
+            $table->boolean('status')->default('0')->comment('Task status. 1=done, 0=not completed.');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

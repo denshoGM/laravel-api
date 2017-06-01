@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password',
+        'name', 'lastName', 'email', 'username', 'password', 'gender', 'phone',
     ];
 
     /**
@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userTasks()
+    {
+        return $this->hasMany('App\Tasks', 'user_id', 'id');
+    }
 }

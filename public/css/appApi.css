@@ -1236,7 +1236,7 @@ textarea::-moz-placeholder{
 }
 
 thead th {
-    background:#3399cc ;
+    background: #525a67;
     color: #fff;
 }
 .table-striped>tbody>tr:nth-of-type(odd){

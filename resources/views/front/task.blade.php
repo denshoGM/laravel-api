@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li class="active">Listar Tareas</li>
+            <li class="active">Listing Tasks</li>
         </ol>
 
-        <div id="field" data-field-id="{{$todos}}"></div>
+        <div id="field" data-field-id="<?php echo e($todos); ?>"></div>
 
         <div class="col-lg-12">
-            <h3 class="pull-left font-bold customer-title">Lista de Tareas</h3>
+            <h3 class="pull-left font-bold customer-title">Tasks List</h3>
         </div>
 
         <div class="col-md-12 margin-datatable">
