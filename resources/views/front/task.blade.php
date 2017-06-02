@@ -9,7 +9,7 @@
         <div id="field" data-field-id="<?php echo e($todos); ?>"></div>
 
         <div class="col-lg-12">
-            <h3 class="pull-left font-bold customer-title">Tasks List</h3>
+            <h3 class="pull-left font-bold task-title">Tasks List</h3>
         </div>
 
         <div class="col-md-12 margin-datatable">
@@ -24,7 +24,6 @@
     <script>
         var dataSet = $('#field').data("field-id");
 
-        console.log(dataSet);
         $(document).ready(function () {
             $('#tableTask').DataTable({
                 data: dataSet,

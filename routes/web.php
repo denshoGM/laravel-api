@@ -5,6 +5,7 @@ Route::get('/', function () {
 });
 
 Route::get('/getCombined', 'ServiceController@getCombinedData');
+Route::post('/saveCombined', 'ServiceController@storeCombined');
 
 Route::get('/getUsersData', 'ServiceController@getUsersData');
 

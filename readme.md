@@ -1,6 +1,6 @@
-## Simple App for Zoho Invoices (Challenge Alegra) / Aplicación Sencilla para Invoices de Zoho (Reto Alegra)
+## Simple App for Challenge / Aplicación Sencilla para Reto 
 
 - git clone
-- cd zoho-laravel-angular
+
 - composer update
 - php artisan key:generate
