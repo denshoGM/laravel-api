@@ -21,8 +21,33 @@ b) Si se está bajo un entorno Linux:
 ## Instalación
 - Clonar el repositorio hacia la ruta raiz del servidor de aplicaciones.
  
-- (Windows) Al iniciar los servicios en Laragon, se generará automáticamente la configuración para el Virtual Host. En Linux hacer lo siguiente:
+- En Windows, al iniciar los servicios de Laragon se generará automáticamente la configuración para el Virtual Host. En Linux se debe hacer lo siguiente:
 
+        cd /etc/apache2/sites-available/
+        sudo cp 000-default.conf laravel-api.dev.conf
+        sudo nano laravel-api.dev.conf
+        
+        Editar el archivo de la siguiente manera:
+        <VirtualHost *:80> 
+            DocumentRoot "/var/www/html/laravel-api/public/" (o ruta del servidor)
+            ServerName laravel-api.dev
+            ServerAlias *.laravel-api.dev
+            <Directory "/var/www/html/laravel-api/public/"> (o ruta del servidor)
+                AllowOverride All
+                Require all granted
+            </Directory>
+        </VirtualHost>
+        
+        sudo a2ensite laravel-api.dev.conf
+        sudo nano /etc/hosts
+        
+        Agregar la línea: 127.0.0.1        laravel-api.dev
+        
+        
+        Asegurarse que esté activo el módulo rewrite: sudo a2enmod rewrite
+        
+        Reiniciar el servidor: sudo service apache2 restart
+        
 - Se deben instalar desde la terminal todas las librerias necesarias para la correcta ejecución del proyecto desde la consola se escribe el siguiente comando: 
 
         composer install
@@ -41,7 +66,6 @@ b) Si se está bajo un entorno Linux:
         mkdir storage/framework/views
         mkdir storage/framework/cache
 
-
 - Se deben generar las keys para el correcto funcionamiento de la encriptacion en el proyecto:
 
         php artisan key:generate
@@ -50,20 +74,25 @@ b) Si se está bajo un entorno Linux:
         php artisan view:clear
         php artisan optimize
 
-- Generar esquema de base de datos: homestead
+- Generar esquema de base de datos: **homestead**
 
 - Ejecutar las migraciones para las tablas con el siguiente comando:
         
         php artisan migrate:install
+        php artisan migrate
 
 ## Ejecución
 
 a) Windows (más rápida):
-- Iniciar servicios en Laragon, apuntar el navegador a la ruta [laravel-api.dev](laravel-api.dev)
+- Reiniciar todos los servicios en Laragon, apuntar el navegador a la ruta [laravel-api.dev](laravel-api.dev)
 
 b) Linux:
 
-c) Vía comando php artisan serve (alternativa)
+- Realizar todas las configuraciones anteriores, apuntar el navegador a la ruta [laravel-api.dev](laravel-api.dev)
+
+c) Vía comando (alternativa)
+
+- Posicionarse desde la terminal en la carpeta del proyecto, ejecutar el comando: **php artisan serve** apuntar a la ruta generada (usualmente) [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Tecnologías Utilizadas
 

@@ -28,26 +28,30 @@ class ServiceController extends Controller
 	public function getUsersData()
     {
 
-        DB::statement("SET foreign_key_checks=0");
-        User::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        try {
+            DB::statement("SET foreign_key_checks=0");
+            User::truncate();
+            DB::statement("SET foreign_key_checks=1");
 
-        //Obtengo la data utilizando el helper de Guzzle
-        $data = Guzzle::getRandomUser();
+            //Obtengo la data utilizando el helper de Guzzle
+            $data = Guzzle::getRandomUser();
 
-        foreach ($data->results as $d){
-            $user = new User;
-            $user->name = $d->name->first;
-            $user->lastName = $d->name->last;
-            $user->email = $d->email;
-            $user->username = $d->login->username;
-            $user->password = $d->login->password;
-            $user->gender = $d->gender;
-            $user->phone = $d->phone;
-            $user->save();
+            foreach ($data->results as $d) {
+                $user = new User;
+                $user->name = $d->name->first;
+                $user->lastName = $d->name->last;
+                $user->email = $d->email;
+                $user->username = $d->login->username;
+                $user->password = $d->login->password;
+                $user->gender = $d->gender;
+                $user->phone = $d->phone;
+                $user->save();
+            }
+
+            return view('front.user')->with('users', json_encode($data));
+        }catch (\Exception $exception){
+            return view('front.user')->with('users', null);
         }
-
-        return view('front.user')->with('users' , json_encode($data));
 	}
 
     /**
@@ -55,6 +59,7 @@ class ServiceController extends Controller
      */
     public function getTodosData()
     {
+        try{
         DB::statement("SET foreign_key_checks=0");
         Task::truncate();
         DB::statement("SET foreign_key_checks=1");
@@ -71,6 +76,9 @@ class ServiceController extends Controller
         }
 
         return view('front.task')->with('todos' , json_encode($data));
+        }catch (\Exception $exception){
+            return view('front.task')->with('todos', null);
+        }
     }
 
     /**
@@ -81,39 +89,42 @@ class ServiceController extends Controller
         $users = $request->users;
         $tasks = $request->tasks;
 
-        DB::statement("SET foreign_key_checks=0");
-        User::truncate();
-        DB::statement("SET foreign_key_checks=1");
+        try {
+            DB::statement("SET foreign_key_checks=0");
+            User::truncate();
+            DB::statement("SET foreign_key_checks=1");
 
-        DB::statement("SET foreign_key_checks=0");
-        Task::truncate();
-        DB::statement("SET foreign_key_checks=1");
+            DB::statement("SET foreign_key_checks=0");
+            Task::truncate();
+            DB::statement("SET foreign_key_checks=1");
 
-        for ($i = 0; $i < count($users["results"]); $i++) {
-            $results = $users["results"][$i];
-            $user = new User;
-            $user->name = $results["name"] ["first"];
-            $user->lastName = $results["name"] ["last"];
-            $user->email = $results["email"];
-            $user->username = $results["login"] ["username"];
-            $user->password = $results["login"] ["password"];
-            $user->gender = $results["gender"];
-            $user->phone = $results["phone"];
-            $user->save();
-        }
-
-        for ($j = 0; $j < count($tasks); $j++) {
-            $task = new Task;
-            $task->user_id = $tasks[$j]["userId"];
-            $task->title = $tasks[$j]["title"];
-            if ($tasks[$j]["completed"] === "false"){
-                $task->status = 0;
-            } else{
-                $task->status = 1;
+            for ($i = 0; $i < count($users["results"]); $i++) {
+                $results = $users["results"][$i];
+                $user = new User;
+                $user->name = $results["name"] ["first"];
+                $user->lastName = $results["name"] ["last"];
+                $user->email = $results["email"];
+                $user->username = $results["login"] ["username"];
+                $user->password = $results["login"] ["password"];
+                $user->gender = $results["gender"];
+                $user->phone = $results["phone"];
+                $user->save();
             }
-            $task->save();
-        }
 
+            for ($j = 0; $j < count($tasks); $j++) {
+                $task = new Task;
+                $task->user_id = $tasks[$j]["userId"];
+                $task->title = $tasks[$j]["title"];
+                if ($tasks[$j]["completed"] === "false") {
+                    $task->status = 0;
+                } else {
+                    $task->status = 1;
+                }
+                $task->save();
+            }
+        } catch (\Exception $exception){
+            return $exception;
+        }
         return 'Datos Guardados Exitosamente!';
     }
 
