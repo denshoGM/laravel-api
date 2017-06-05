@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use App\User;
+use App\History;
 use App\Helpers\Guzzle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class ServiceController extends Controller
 {
 
     /**
-     * Load Combined View
+     * Load Combined View.
      */
     public function getCombinedData()
     {
@@ -23,7 +24,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * Get Users data, and save to the DB
+     * Get Users data, and save to the DB.
      */
 	public function getUsersData()
     {
@@ -55,7 +56,7 @@ class ServiceController extends Controller
 	}
 
     /**
-     * Get Tasks data, and save to the DB
+     * Get Tasks data, and save to the DB.
      */
     public function getTodosData()
     {
@@ -82,7 +83,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * Store both Users and Tasks
+     * Store both Users and Tasks.
      */
     public function storeCombined(Request $request)
     {
@@ -122,14 +123,46 @@ class ServiceController extends Controller
                 }
                 $task->save();
             }
+
+            $this->userHistory();
         } catch (\Exception $exception){
             return $exception;
         }
         return 'Datos Guardados Exitosamente!';
     }
 
+    /**
+     * Get Historical data.
+     */
+    public function getHistory()
+    {
+        $history = History::all();
+        return view('front.history')->with('history', $history);
+    }
+
+    /**
+     * Fill historic data.
+     */
     public function userHistory()
     {
-        return view('front.history');
+        $userTasks = User::select('id', 'name', 'lastName', 'email')->with(array('tasks'=>function($query){
+                   $query->select('user_id', 'title', 'status');}))->get();
+
+        foreach ($userTasks as $ut){
+            $history = new History;
+            $history->name = $ut->name;
+            $history->lastName = $ut->lastName;
+            $history->email = $ut->email;
+            foreach ($ut->tasks as $task) {
+                $history->title = $task->title;
+                $history->status = $task->status;
+                $history->save();
+
+                $history = new History;
+                $history->name = $ut->name;
+                $history->lastName = $ut->lastName;
+                $history->email = $ut->email;
+            }
+        }
     }
 }

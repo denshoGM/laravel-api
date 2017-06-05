@@ -6,7 +6,7 @@
             <li class="active">Listing Tasks</li>
         </ol>
 
-        <div id="field" data-field-id="<?php echo e($todos); ?>"></div>
+        <div id="field" data-field-id="{{$todos}}"></div>
 
         <div class="col-lg-12">
             <h3 class="pull-left font-bold task-title">Tasks List</h3>
@@ -37,7 +37,7 @@
                     title: "Title",
                     data: 'title'
                 }, {
-                    title: "Completed",
+                    title: "Status",
                     data: 'completed'
                 }]
             });

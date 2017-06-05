@@ -11,4 +11,4 @@ Route::get('/getUsersData', 'ServiceController@getUsersData');
 
 Route::get('/getTodosData', 'ServiceController@getTodosData');
 
-Route::get('/user-history', 'ServiceController@userHistory');
+Route::get('/user-history', 'ServiceController@getHistory');

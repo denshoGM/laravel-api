@@ -17,7 +17,7 @@ class CreateHistoryTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('lastName');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('title');
             $table->boolean('status')->default('0')->comment('Task status. 1=done, 0=not completed.');
             $table->timestamps();

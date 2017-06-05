@@ -9,6 +9,17 @@ class History extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'data_history';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'title', 'status',
+    ];
+
     /**
      * The attributes that should be mutated to dates.
      *
