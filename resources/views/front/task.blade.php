@@ -14,7 +14,22 @@
 
         <div class="col-md-12 margin-datatable">
             <table id="tableTask" class="table table-bordered table-striped responsive">
-                {{--Datatable Content--}}
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -25,21 +40,32 @@
         var dataSet = $('#field').data("field-id");
 
         $(document).ready(function () {
-            $('#tableTask').DataTable({
+            // Setup - add a text input to each footer cell
+            $('#tableTask tfoot th').each( function () {
+                var title = $(this).text();
+                $(this).html( '<input class="searchFooter" type="text" placeholder="Search '+title+'"/>' );
+            });
+
+            var table = $('#tableTask').DataTable({
                 data: dataSet,
-                columns: [{
-                    title: "ID",
-                    data: 'id'
-                }, {
-                    title: "User ID",
-                    data: 'userId'
-                }, {
-                    title: "Title",
-                    data: 'title'
-                }, {
-                    title: "Status",
-                    data: 'completed'
-                }]
+                columns: [
+                    {data: 'id'},
+                    {data: 'userId'},
+                    {data: 'title'},
+                    {data: 'completed'}
+                ]
+            });
+
+            // Apply the search
+            table.columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                });
             });
         });
     </script>

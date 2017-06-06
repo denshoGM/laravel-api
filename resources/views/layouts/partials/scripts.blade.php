@@ -14,13 +14,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 <!-- iCheck -->
-<script src="{{ asset('/js/icheck.min.js') }}"></script>
+<script src="{{ asset('/js/toastr.min.js') }}"></script>
 
 <!-- MomentJS -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <!-- Date Range Picker -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+<!-- toastr      -->
+<script src="{{ asset('/js/icheck.min.js') }}"></script>
 
 <script>
     $(document).ready(function(){

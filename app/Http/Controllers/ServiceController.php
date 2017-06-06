@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Redirect;
 use App\Task;
 use App\User;
 use App\History;
@@ -128,7 +129,7 @@ class ServiceController extends Controller
         } catch (\Exception $exception){
             return $exception;
         }
-        return 'Datos Guardados Exitosamente!';
+        return 'API Data stored successfully!';
     }
 
     /**
@@ -165,4 +166,22 @@ class ServiceController extends Controller
             }
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroyHistory($id)
+    {
+        if ($id != 0){
+            $history = History::find($id);
+            $history->delete();
+            $msg = "Record deleted successfully!";
+            return redirect('/user-history')->with('msg', $msg)->with('status', 'Ok');;
+        }else{
+            History::getQuery()->delete();
+            $msg = "All records will be deleted!";
+            return $msg;
+        }
+    }
+
 }

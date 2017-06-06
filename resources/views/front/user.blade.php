@@ -14,7 +14,26 @@
 
         <div class="col-md-12 margin-datatable">
             <table id="tableUsers" class="table table-bordered table-striped responsive">
-                {{--Datatable Content--}}
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Registered</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Registered</th>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -25,27 +44,35 @@
         var dataSet = $('#field').data("field-id");
 
         $(document).ready(function () {
-            $('#tableUsers').DataTable({
+            // Setup - add a text input to each footer cell
+            $('#tableUsers tfoot th').each( function () {
+                var title = $(this).text();
+                $(this).html( '<input class="searchFooter" type="text" placeholder="Search '+title+'" />' );
+            });
+
+            var table = $('#tableUsers').DataTable({
                 data: dataSet.results,
-                columns: [{
-                    title: "Name",
-                    data: 'name.first'
-                }, {
-                    title: "Gender",
-                    data: 'gender'
-                }, {
-                    title: "Last Name",
-                    data: 'name.last'
-                }, {
-                    title: "Email",
-                    data: 'email'
-                }, {
-                    title: "Phone",
-                    data: 'phone'
-                }, {
-                    title: "Registered",
-                    data: 'registered'
-                }]
+                responsive: false,
+                columns: [
+                    {data: 'name.first'},
+                    {data: 'name.last'},
+                    {data: 'gender'},
+                    {data: 'email'},
+                    {data: 'phone'},
+                    {data: 'registered'}
+                ]
+            });
+
+            // Apply the search
+            table.columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                });
             });
         });
     </script>

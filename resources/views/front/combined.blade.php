@@ -116,14 +116,14 @@
                         'tasks': taskSet
                     },
                     success: function (response) {
-                        alert(response);
+                        toastr.success(response, ' ' , {timeOut: 5000, closeButton: true, progressBar: true, positionClass: "toast-top-full-width"});
+                        $(".loadBtn").prop('disabled', false);
                     }
                 });
 
                 $(this).hide( "slow", function() {
                     $(".loadBtn").removeClass("btn-info");
                     $(".loadBtn").addClass("btn-warning");
-                    $(".loadBtn").prop('disabled', false);
                     $(".loadBtn").html('<i class="ibtn fa fa-bolt"></i> Reload?');
                 });
             });

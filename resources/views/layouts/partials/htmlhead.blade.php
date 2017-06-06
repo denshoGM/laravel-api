@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Theme style - Css del Proyecto-->
+    <!-- Theme style - Css del Proyecto -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/appApi.css') }}"/>
 
     <!-- DataTables 1.10.12-->
@@ -37,5 +37,8 @@
 
     <!-- iCheck -->
     <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/icheck/square/grey.css') }}"/>
+
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/toastr.min.css') }}"/>
 
 </head>
