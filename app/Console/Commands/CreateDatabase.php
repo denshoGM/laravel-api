@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
+use PDO;
+use PDOException;
 
 class CreateDatabase extends Command
 {
@@ -38,7 +39,7 @@ class CreateDatabase extends Command
      */
     public function handle()
     {
-/*        $database = env('DB_DATABASE', false);
+        /*$database = env('DB_DATABASE', false);
 
         if (! $database) {
             $this->info('Skipping creation of database as env(DB_DATABASE) is empty');

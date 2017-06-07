@@ -7,7 +7,7 @@
         </ol>
 
         @if (session('status'))
-            <input type="hidden" value="{{ Session::get('msg') }}" id="msg-delete">
+            <input type="hidden" value="{{Session::get('msg')}}" id="msg-delete">
         @endif
 
         <input type="hidden" value="{{url('delete-history')}}" id="url-ajax-combined">
@@ -21,22 +21,19 @@
             <table id="tableHistory" class="table table-bordered table-striped responsive">
                 <thead>
                     <tr>
+                        <th>UserID</th>
                         <th>Name</th>
                         <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Title</th>
-                        <th>Status</th>
+                        <th>Total Tasks</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                 <tr>
+                    <th>UserID</th>
                     <th>Name</th>
                     <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th></th>
+                    <th colspan="2"></th>
                 </tr>
                 </tfoot>
             </table>
@@ -48,56 +45,72 @@
         <div class="col-md-12">
             <br>
         </div>
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="detailModalLabel">The Sun Also Rises</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12 text-center">
+                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                                 name="aboutme" width="140" height="140" border="0" class="img-circle">
+                        </div>
+                        <p>
+                            Please confirm you would like to add
+                            <b><span id="fav-title">The Sun Also Rises</span></b>
+                            to your favorites list.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info pull-right">Add to Favorites</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @section('scripts-extras')
     <script>
         var dataSet = $('#field').data("field-id");
-        var msg = "¿Está seguro que desea eliminar esta Configuración?";
-
-        console.log($('#msg-delete').val());
+        var msg = "Are you sure do you want to delete all this records?";
 
         if ($('#msg-delete').val() != undefined){
-            toastr.error($('#msg-delete').val(), '', {timeOut: 5000, closeButton: true, progressBar: true, positionClass: "toast-top-full-width"});
+            toastr.error($('#msg-delete').val(), 'Done', {timeOut: 5000, closeButton: true, progressBar: true, positionClass: "toast-bottom-right"});
         }
 
         $(document).ready(function () {
             // Setup - add a text input to each footer cell
             $('#tableHistory tfoot th').each( function () {
                 var title = $('#tableHistory tfoot th').eq( $(this).index() ).text();
-                if($(this).index() !=5)
+                if($(this).index() != 3 && $(this).index() != 4)
                     $(this).html( '<input class="searchFooter" type="text" placeholder="Search '+title+'" />' );
             });
 
             var table = $('#tableHistory').DataTable({
                 data: dataSet,
                 columns: [
+                    {data: 'user_id'},
                     {data: 'name'},
                     {data: 'lastName'},
-                    {data: 'email'},
-                    {data: 'title'},
-                    {data: 'status'},
-                    {data: 'id'}
+                    {data: 'totalTasks'},
+                    {data: 'id',
+                        "className":"left",
+                        "render":function(data, type, full, meta){
+                            return '<a href="#" onclick="historyDetail('+full.user_id+')" class="btn btn-blue btn-xs"><i class="fa fa-info-circle"></i></a> ' +
+                                '<a href="http://laravel-api.dev/delete-history/'+full.id+'/'+full.user_id+'" onclick="return confirm(msg)" class="btn btn-red btn-xs"><i class="fa fa-trash"></i></a>';
+
+                        }
+                    }
                 ],
                 columnDefs: [
-                    { className: "dt-body-center", "targets": [5] },
-                    {
-                        "render": function (data) {
-                            var status = 'Pending';
-                            if(data === 1){
-                                status = 'Completed'
-                            }
-                            return status;
-                        },
-                        "targets": 4
-                    },
-                    {
-                        "render": function ( data, type, row ) {
-                            return '<a href="http://laravel-api.dev/delete-history/'+data+'" onclick="return confirm(msg)" class="btn btn-blue btn-xs eliminar"><i class="fa fa-trash"></i></a>';
-                        },
-                        "targets": 5
-                    }
+                    { orderable: false, targets: 4 },
+                    { className: 'dt-body-center', targets: [4] }
                 ]
             });
 
@@ -128,6 +141,10 @@
                 });
             });
         });
+
+        function historyDetail(user_id) {
+            $('#detailModal').modal();
+        }
     </script>
     @include('layouts.partials.scriptalert')
 @endsection

@@ -21,7 +21,8 @@ b) Si se está bajo un entorno Linux:
 ## Instalación
 - Clonar el repositorio hacia la ruta raiz del servidor de aplicaciones.
  
-- En Windows, al iniciar los servicios de Laragon se generará automáticamente la configuración para el Virtual Host. En Linux se debe hacer lo siguiente:
+- En Windows, al iniciar los servicios de Laragon se generará automáticamente la configuración para el Virtual Host. 
+En Linux se debe hacer lo siguiente:
 
         cd /etc/apache2/sites-available/
         sudo cp 000-default.conf laravel-api.dev.conf
@@ -48,7 +49,8 @@ b) Si se está bajo un entorno Linux:
         
         Reiniciar el servidor: sudo service apache2 restart
         
-- Se deben instalar desde la terminal todas las librerias necesarias para la correcta ejecución del proyecto desde la consola se escribe el siguiente comando: 
+- Se deben instalar desde la terminal todas las librerias necesarias para la correcta ejecución del proyecto. Desde la 
+consola se escribe el siguiente comando: 
 
         composer install
                 
@@ -58,7 +60,8 @@ b) Si se está bajo un entorno Linux:
         DB_USERNAME=root
         DB_PASSWORD=
 
-- En el caso de Linux, se debe dar permisología de lectura/escritura a la carpeta "Storage" y crear los directorios correspondientes:
+- En el caso de Linux, se debe dar permisología de lectura/escritura a la carpeta "Storage" y crear los directorios 
+correspondientes:
 
         sudo chown 777 -R storage
         mkdir storage/framework
@@ -66,9 +69,12 @@ b) Si se está bajo un entorno Linux:
         mkdir storage/framework/views
         mkdir storage/framework/cache
 
-- Se deben generar las keys para el correcto funcionamiento de la encriptacion en el proyecto:
+- Se deben generar las keys para el correcto funcionamiento de la encriptacion en el proyecto. *Se pueden ejecutar los 
+comandos adicionales en caso de requerirlo:
 
         php artisan key:generate
+        
+        *Opcionales:
         php artisan cache:clear
         php artisan config:clear
         php artisan view:clear

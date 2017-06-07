@@ -47,6 +47,7 @@ class ServiceController extends Controller
                 $user->password = $d->login->password;
                 $user->gender = $d->gender;
                 $user->phone = $d->phone;
+                $user->picture = $d->picture->large;
                 $user->save();
             }
 
@@ -110,6 +111,7 @@ class ServiceController extends Controller
                 $user->password = $results["login"] ["password"];
                 $user->gender = $results["gender"];
                 $user->phone = $results["phone"];
+                $user->picture = $results["picture"] ["large"];
                 $user->save();
             }
 
@@ -137,7 +139,11 @@ class ServiceController extends Controller
      */
     public function getHistory()
     {
-        $history = History::all();
+        $history = DB::table('data_history')
+                        ->select(DB::raw('COUNT(user_id) as totalTasks, id, user_id, name, lastName'))
+                        ->whereNull('deleted_at')
+                        ->groupBy('user_id')
+                        ->get();
         return view('front.history')->with('history', $history);
     }
 
@@ -155,6 +161,7 @@ class ServiceController extends Controller
             $history->lastName = $ut->lastName;
             $history->email = $ut->email;
             foreach ($ut->tasks as $task) {
+                $history->user_id = $task->user_id;
                 $history->title = $task->title;
                 $history->status = $task->status;
                 $history->save();
@@ -170,14 +177,21 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroyHistory($id)
+    public function destroyHistory($id, $user_id)
     {
-        if ($id != 0){
-            $history = History::find($id);
-            $history->delete();
-            $msg = "Record deleted successfully!";
-            return redirect('/user-history')->with('msg', $msg)->with('status', 'Ok');;
-        }else{
+        if ($id != 0) {
+            if ($user_id != 0){
+                $history = History::find($id);
+                $history->where('user_id', $user_id)->delete();
+                $msg = "All records deleted successfully!";
+                return redirect('/user-history')->with('msg', $msg)->with('status', 'Ok');
+            } else{
+                $history = History::find($id);
+                $history->delete();
+                $msg = "Record deleted successfully!";
+                return redirect('/user-history')->with('msg', $msg)->with('status', 'Ok');
+            }
+        }else {
             History::getQuery()->delete();
             $msg = "All records will be deleted!";
             return $msg;

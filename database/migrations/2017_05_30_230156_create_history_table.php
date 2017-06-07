@@ -15,6 +15,7 @@ class CreateHistoryTable extends Migration
     {
         Schema::create('data_history', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->comment('User id from table users.');
             $table->string('name');
             $table->string('lastName');
             $table->string('email');

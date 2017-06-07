@@ -1207,6 +1207,10 @@ table tbody tr td{
     font-weight: 100;
 }
 
+td.left {
+    text-align: center;
+}
+
 textarea {
     resize: none;
     font-size: 16.8px !important;

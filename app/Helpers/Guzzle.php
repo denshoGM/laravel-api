@@ -21,7 +21,7 @@ class Guzzle {
     public static function getRandomUser() {
         $client = new GuzzleHttp\Client();
         try {
-            $response = $client->get("https://randomuser.me/api/?results=50");
+            $response = $client->get("https://randomuser.me/api/?nat=us&results=50");
             return json_decode($response->getBody());
         } catch (BadResponseException $e){
             return json_decode($e->getResponse()->getBody(true));

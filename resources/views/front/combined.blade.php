@@ -58,9 +58,15 @@
                     title: "Phone",
                     data: 'phone'
                 }, {
+                    title: "Picture",
+                    data: 'picture.large'
+                }, {
                     title: "Registered",
                     data: 'registered'
-                }]
+                }],
+                columnDefs: [
+                    { visible: false , targets: [5]}
+                ]
             });
 
             $("button[type=submit], .loadBtn").click(function () {
@@ -116,7 +122,7 @@
                         'tasks': taskSet
                     },
                     success: function (response) {
-                        toastr.success(response, ' ' , {timeOut: 5000, closeButton: true, progressBar: true, positionClass: "toast-top-full-width"});
+                        toastr.success(response, 'Success' , {timeOut: 5000, closeButton: true, progressBar: true, positionClass: "toast-bottom-right"});
                         $(".loadBtn").prop('disabled', false);
                     }
                 });
