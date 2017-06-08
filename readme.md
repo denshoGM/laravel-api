@@ -105,7 +105,7 @@ c) Vía comando (alternativa)
 - [Laragon 3.0](https://sourceforge.net/projects/laragon/files/releases/3.0/laragon-wamp.exe): Ambiente para desarrollo rápido de aplicaciones.
 - [Guzzle](https://github.com/guzzle/guzzle): Cliente PHP HTTP que provee una interface sencilla para hacer solicitudes a API's RESTful.
 - [RANDOM USER GENERATOR](https://randomuser.me): API open source para generar información aleatoria de usuarios.
-- [JSONPlaceholder](https://jsonplaceholder.typicode.com): API open source para generar información aleatoria de tareas.
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com): API open source para generar información de prueba para tareas.
 - [Laravel](https://laravel.com): Framework PHP.
 - [jQuery](https://jquery.com): Librería JavaScript.
 - [DataTables](https://datatables.net): Plug-in para jQuery.
