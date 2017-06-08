@@ -13,4 +13,6 @@ Route::get('/getTodosData', 'ServiceController@getTodosData');
 
 Route::get('/user-history', 'ServiceController@getHistory');
 
+Route::get('/history-detail/{user_id}', 'ServiceController@historyDetail');
+
 Route::get('/delete-history/{id}/{user_id}', 'ServiceController@destroyHistory');

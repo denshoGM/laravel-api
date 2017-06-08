@@ -314,7 +314,7 @@ body {
     bottom: -3px;
     left: 0;
     line-height: 1.42857143;
-    background-color: #2bbd0f;
+    background-color: #3399cc;
     visibility: hidden;
     -webkit-transform: scaleX(0);
     -moz-transform: scaleX(0);
@@ -753,7 +753,7 @@ li:after {
 .msj-success{
     color: #2bbd0f;
 }
-.modal-dialog.modal-log{
+.modal-dialog{
     width: 70%;
 }
 
@@ -870,7 +870,7 @@ li:after {
 .pagination>li>a{
     border: none;
     color: #9b9b9a;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
 }
 .pagination>.active>a{

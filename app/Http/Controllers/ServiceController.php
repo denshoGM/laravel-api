@@ -153,7 +153,7 @@ class ServiceController extends Controller
     public function userHistory()
     {
         $userTasks = User::select('id', 'name', 'lastName', 'email')->with(array('tasks'=>function($query){
-                   $query->select('user_id', 'title', 'status');}))->get();
+                   $query->select('id', 'user_id', 'title', 'status');}))->get();
 
         foreach ($userTasks as $ut){
             $history = new History;
@@ -161,6 +161,7 @@ class ServiceController extends Controller
             $history->lastName = $ut->lastName;
             $history->email = $ut->email;
             foreach ($ut->tasks as $task) {
+                $history->task_id = $task->id;
                 $history->user_id = $task->user_id;
                 $history->title = $task->title;
                 $history->status = $task->status;
@@ -172,6 +173,17 @@ class ServiceController extends Controller
                 $history->email = $ut->email;
             }
         }
+    }
+
+    /**
+     * Get history detail.
+     */
+    public function historyDetail($user_id)
+    {
+        $user = User::find($user_id);
+        $tasks = History::where('user_id', $user_id)->get();
+
+        return array($user, $tasks);
     }
 
     /**

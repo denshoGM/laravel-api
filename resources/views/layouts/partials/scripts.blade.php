@@ -22,7 +22,7 @@
 <!-- Date Range Picker -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
-<!-- toastr      -->
+<!-- toastr -->
 <script src="{{ asset('/js/icheck.min.js') }}"></script>
 
 <script>

@@ -19,6 +19,7 @@ class CreateHistoryTable extends Migration
             $table->string('name');
             $table->string('lastName');
             $table->string('email');
+            $table->integer('task_id')->unsigned()->comment('Task id from table tasks.');
             $table->string('title');
             $table->boolean('status')->default('0')->comment('Task status. 1=done, 0=not completed.');
             $table->timestamps();
