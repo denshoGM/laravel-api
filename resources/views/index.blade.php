@@ -16,7 +16,7 @@
         </p>
         <h3><span style="color:#b0b0b0"><strong>&iquest;C&oacute;mo utilizarme?</strong></span>
         </h3>
-        <p><span style="color:#b0b0b0">Desde el men&uacute; &quot;Action&quot; est&aacute;n disponibles todas las funciones de la aplicaci&oacute;n:</span>
+        <p><span style="color:#b0b0b0">Desde el men&uacute; &quot;<strong>Action</strong>&quot; est&aacute;n disponibles todas las funciones de la aplicaci&oacute;n:</span>
         </p>
         <ol>
             <li><span style="color:#b0b0b0">L<strong>oad Users</strong> y <strong>Load Tasks</strong>, permiten simular la consulta a API&#39;s externas, retornando la informaci&oacute;n en un formato unificado.</span></li>
@@ -29,7 +29,7 @@
             <li><span style="color:#b0b0b0">Uno para re-ejecutar la b&uacute;squeda, mostrando un detalle por usuario, y permitiendo eliminar cada una de las tareas asignadas.</span></li>
             <li><span style="color:#b0b0b0">El segundo enlace, permite eliminar en lote todas las tareas asignadas por usuario.&nbsp;</span></li>
         </ul>
-        <p style="color:#b0b0b0">Un bot&oacute;n al final, permite eliminar toda la informaci&oacute;n del historia. Este paso es opcional y solamente es para fines de mantener la cantidad de informaci&oacute;n reducida.
+        <p style="color:#b0b0b0">Un bot&oacute;n al final, permite eliminar toda la informaci&oacute;n del historial. Este paso es opcional y solamente es para fines de mantener la cantidad de informaci&oacute;n reducida.
     </div>
 
 
